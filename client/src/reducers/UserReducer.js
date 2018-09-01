@@ -5,7 +5,8 @@
 
 const INIT_STATE = {
     loading: false,
-    graph_data:[]
+    graph_data:[],
+    change_password: true
 };
 
 export default (state = INIT_STATE, action) => {
@@ -14,6 +15,8 @@ export default (state = INIT_STATE, action) => {
             return { ...state, graph_data: action.payload };
         case "GRAPH_DATA_FAILURE":
             return { ...state };
+          case "PASSWORD_CHANGE":
+            return { ...state, change_password: action.payload };
         default: return { ...state };
     }
 }

@@ -44,7 +44,7 @@ export default class Auth {
     let expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
-    if ( authResult.idTokenPayload.sub === "auth0|5b81322fad451875aad36dc4"){
+    if ( authResult.idTokenPayload.sub === "auth0|5b813d0cad451875aad36ed6"){
         localStorage.setItem('user_id', "tejasgujjar@gmail.com");
     }else{
       localStorage.setItem('user_id', "tejasgr36@gmail.com");
@@ -70,6 +70,8 @@ export default class Auth {
     // access token's expiry time
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     if (new Date().getTime() < expiresAt){
+      // check if password change required
+
       return localStorage.getItem('user_id');
     }else{
       return false;

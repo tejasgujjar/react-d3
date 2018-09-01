@@ -4,11 +4,13 @@ import Graph from './Graph';
 import {user1} from '../constants/users';
 import { user1_data_url, user2_data_url } from '../constants/ApiURLs';
 import {get_graph_data} from '../actions';
+import ChangePassword from './ChangePassword';
 
 class Home extends Component {
   constructor(props, context){
     super(props, context);
     this.renderLoggedIn = this.renderLoggedIn.bind(this);
+    this.renderPasswordPrompt = this.renderPasswordPrompt.bind(this);
     console.log('user'+ this.props);
   }
 
@@ -16,6 +18,7 @@ class Home extends Component {
     this.props.auth.login();
   }
   renderLoggedIn(user){
+
     console.log('user ' + user + " cons: "+ user1);
     if(user == user1){
       // console.log('user'+ this.props);
@@ -26,6 +29,7 @@ class Home extends Component {
     }
     return (
       <div>
+        <ChangePassword {...this.props} />
         <div>
           <h4>
             You are logged in! Welcome {user}
@@ -34,6 +38,9 @@ class Home extends Component {
         </div>
       </div>
     );
+  }
+  renderPasswordPrompt(){
+    return
   }
   render() {
     const { isAuthenticated } = this.props.auth;
@@ -67,6 +74,7 @@ class Home extends Component {
 function mapStateToProps(state) {
   const { user } = state;
   return {
+    
   };
 }
 export default connect(mapStateToProps,{

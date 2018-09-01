@@ -12,7 +12,7 @@ class Graph extends Component {
     super(props, context);
     this.renderGraph = this.renderGraph.bind(this);
     this.parseData = this.parseData.bind(this);
-    console.log('user'+ this.props);
+    // console.log('user'+ this.props);
   }
 
   parseData(data){
@@ -22,22 +22,22 @@ class Graph extends Component {
 
     data.map((mail) => {
         const msg = mail.message;
-        console.log('MSG:' + msg);
+        // console.log('MSG:' + msg);
         var from = msg.match(new RegExp("\nFrom: " + "(.*)" + "\nTo: "))[1];
-        console.log('from:'+ from);
+        // console.log('from:'+ from);
         if (nodeList.some(item => item === from)){
-           console.log('skipping from :'+ from);
+           // console.log('skipping from :'+ from);
         }else{
           nodeList.push(from);
         }
         var to = msg.match(new RegExp("\nTo: " + "(.*)" + "\nSubject: "))[1];
         if (nodeList.some(item => item === to)){
-          console.log('skipping to :'+ to);
+          // console.log('skipping to :'+ to);
         }else{
           nodeList.push(to);
         }
         if (arrowList.some(item => item[0] === from && item[1] === to)){
-          console.log('skipping arrow: '+ from + '-> ' + to);
+          // console.log('skipping arrow: '+ from + '-> ' + to);
         }else{
           arrowList.push([from, to])
         }
@@ -64,7 +64,7 @@ class Graph extends Component {
       let color_i = colors[Math.floor(Math.random()*colors.length)];
       return <ForceGraphNode node={{ id: item, label:  item }} fill={colors[color_i]}></ForceGraphNode>
     });
-    console.log('graph node'+ GraphNodes);
+    // console.log('graph node'+ GraphNodes);
     return (
       <div>
         Graph
@@ -77,7 +77,7 @@ class Graph extends Component {
           >
             {data.nodeList.map(item => {
               var color_i = colors[Math.floor(Math.random()*colors.length)];
-              console.log('color i'+ color_i);
+              // console.log('color i'+ color_i);
               return <ForceGraphNode node={{ id: item, label:  item, radius:10}} fill={color_i}></ForceGraphNode>
             })}
             {data.arrowList.map(item => {
